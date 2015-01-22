@@ -11,5 +11,8 @@ Matexch::Application.routes.draw do
     resources :users
     
   end
+
+  resources :profile, except: [:destroy, :index] 
+  
   
 end

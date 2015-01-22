@@ -10,6 +10,9 @@ gem 'jquery-rails', '4.0.2'
 gem 'turbolinks', '2.5.3'
 gem 'jbuilder', '2.2.6'
 gem 'bcrypt', '3.1.9'
+gem 'rails-i18n'
+gem 'devise-i18n'
+gem 'whenever', :require => false
 
 # Necessary for Windows OS (won't install on *nix systems)
 gem 'tzinfo-data', platforms: [:mingw, :mswin]

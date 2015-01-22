@@ -1,12 +1,11 @@
-<p>Welcome <%= @user.username.capitalize %>!</p>
+<p>Witaj <%= @user.username.capitalize %>!</p>
 
-<p>You need to confirm your account email through the link below:</p>
+<p>W celu potwierdzenia rejestracji na portalu MatExch kliknij poniższy link:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @token) %></p>
+<p><%= link_to 'Potwierdź rejsetrację', confirmation_url(@resource, :confirmation_token => @token) %></p>
 <br/>
 
 <p>
- Thank you,<br/><br/>
-  Yourself<br/>
-  <%= link_to "Your URL", "#" %>
+ Dziękujemy,<br/><br/>
+ Portal MatExch<br/>
 </p>

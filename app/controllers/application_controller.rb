@@ -27,7 +27,11 @@ class ApplicationController < ActionController::Base
   
   # Redirects on successful sign in
   def after_sign_in_path_for(resource)
-    inside_path
+    if current_user.sign_in_count == 1
+      new_profile_path
+    else
+      root_path
+    end
   end
   
   # Auto-sign out locked users

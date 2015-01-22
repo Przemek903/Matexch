@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-5 profilePanel">
+			<h4 class="profileTitle">Profil użytkownika: <%= current_user.username %></h4>
+			<p>Imię: <%= @profile.name %></p>
+
+			<% if current_user == @profile.user %>
+				<p>Nazwisko: <%= @profile.surname %></p>
+				<p>Miasto: <%= @profile.city %></p>
+				<p>Adres: Ul. <%= @profile.street %> <%= @profile.homeNumber %> / <%= @profile.streetNumber %></p>
+				<p>Stan konta: <%= @profile.balance %></p>
+				<%= link_to "Edytuj Profil", edit_profile_path(@profile), class: "btn btn-primary" %>
+			<% end %>
+		</div>
+		<div class="col-md-7"></div>
+	</div>
+</div>
