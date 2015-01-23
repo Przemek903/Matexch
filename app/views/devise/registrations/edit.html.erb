@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-6 ">
-    <h1>Edytuj profil</h1>
+    <h1>Edytuj dane do konta</h1>
 
     <%= form_for(resource, :as => resource_name, 
     :url => registration_path(resource_name), 
@@ -53,8 +53,9 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-6">
-          <%= f.submit "Uaktualnij", class: "btn btn-primary" %> - <%= link_to "Anuluj zmiany", inside_path %>
+        <div class="col-sm-8">
+          <%= f.submit "Uaktualnij", class: "btn btn-primary" %> - <%= link_to "Anuluj zmiany", inside_path %><br/><br/>
+          <%= link_to "Profil", profile_path(current_user.profile.id), class: "btn btn-primary" %> - Kliknij by obejrzeć swój profil
         </div>
       </div>    
  

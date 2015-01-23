@@ -1,8 +1,7 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-8">
-			<h1>Twoje nowe dane profilowe:</h1>
+		<div class="col-sm-6">
+			<h1>Nowe dane profilowe:</h1>
 			<%= form_for(@profile) do |f| %>
 				
 			  <% if @profile.errors.any? %>
@@ -19,36 +18,69 @@
 
 			  <div class="form-group">
 			    <%= f.label :name, "Imię:" %><br>
-			    <%= f.text_field :name, :class => "form-control" %>
+			    <div class="row">
+          			<div class="col-sm-6">
+          				<%= f.text_field :name, :autofocus => true, :class => "form-control" %>
+					</div>
+        		</div> 
 			  </div>
+
 			  <div class="form-group">
 			    <%= f.label :surname , "Nazwisko" %><br>
-			    <%= f.text_field :surname, :class => "form-control" %>
+			    <div class="row">
+          			<div class="col-sm-6">
+          				<%= f.text_field :surname, :class => "form-control" %>
+					</div>
+        		</div>
 			  </div>
 
 			  <div class="form-group">
 			    <%= f.label :city , "Miasto" %><br>
-			    <%= f.text_field :city, :class => "form-control" %>
+			    <div class="row">
+          			<div class="col-sm-6">
+          				<%= f.text_field :city, :class => "form-control" %>
+					</div>
+        		</div>
 			  </div>
 
 			  <div class="form-group">
 			    <%= f.label :street , "Ulica" %><br>
-			    <%= f.text_field :street, :class => "form-control" %>
+			    <div class="row">
+          			<div class="col-sm-6">
+          				<%= f.text_field :street, :class => "form-control" %>
+					</div>
+        		</div>
 			  </div>
 
 			  <div class="form-group">
-			    <%= f.label :homeNumber , "Numer domu" %><br>
-			    <%= f.text_field :homeNumber, :class => "form-control" %>
-			  </div>
-
-			  <div class="form-group">
+			    <%= f.label :homeNumber , "Numer domu" %> &#160 &#160  &#160
 			    <%= f.label :streetNumber , "Numer mieszkania" %><br>
-			    <%= f.text_field :streetNumber, :class => "form-control" %>
+			    <div class="row">
+          			<div class="col-sm-3">
+          				<%= f.number_field :homeNumber, :class => "form-control" %>
+					</div>
+					<div class="col-sm-3">
+						<%= f.text_field :streetNumber, :class => "form-control" %>
+					</div>
+        		</div>
+			  </div>
+
+			  <div class="form-group">
+			    
+			    <div class="row">
+          			<div class="col-sm-6">
+          				
+					</div>
+        		</div>
 			  </div>
 
 			  <div class="form-group">
 			    <%= f.label :dateOfBirth, "Data urodzenia" %><br>
-			    <%= f.date_select :dateOfBirth, :start_year => 1900, end_year: Date.today.year, :class => "form-control" %>
+			    <div class="row">
+          			<div class="col-sm-6">
+          				<%= f.date_select :dateOfBirth, :start_year => 1900, end_year: Date.today.year, :class => "form-control" %>
+					</div>
+        		</div>
 			  </div>
 
 			  <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -59,6 +91,5 @@
 
 			<% end %>
 		</div>
-		<div class="col-md-3"></div>
 	</div>
 </div> <!-- end container -->
