@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   def home
   	@products = Product.all
     @transaction = Transaction.new
-    @transactions = Transaction.last(5)
+    @transactions = Transaction.last(4)
     gold = Product.first
     @exchange = []
   	sumExchange = 0

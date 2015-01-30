@@ -8,7 +8,7 @@
 				<p>Nazwisko: <%= @profile.surname %></p>
 				<p>Miasto: <%= @profile.city %></p>
 				<p>Adres: Ul. <%= @profile.street %> <%= @profile.homeNumber %> / <%= @profile.streetNumber %></p>
-				<p>Stan konta: <%= @profile.balance %></p>
+				<p>Stan konta: <%= @profile.balance.round(2) %></p>
 				<%= link_to "Edytuj Profil", edit_profile_path(@profile), class: "btn btn-primary" %>
 			<% end %>
 		</div>

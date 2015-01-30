@@ -11,7 +11,11 @@
     		<% @products.each do |prod| %>
     			<tr>
     				<th><%= link_to "#{prod.name}", prod, remote: true  %></th>
-    				<th><%= number_to_currency prod.exchanges.last.value.round(2) %></th>
+            <% if (prod.exchanges.last(2)[1].value.round(2) - prod.exchanges.last(2)[0].value.round(2)) > 0 %>
+    				    <th class="green"><%= number_to_currency prod.exchanges.last.value.round(2) %></th>
+            <% else %>
+                <th class="red"><%= number_to_currency prod.exchanges.last.value.round(2) %></th>
+            <% end %>
     			</tr>
     		<% end %>
     	</table>	
@@ -68,6 +72,7 @@
           <th>Kurs zakupu</th>
           <th>Kurs aktualny</th>
           <th>Różnica</th>
+          <th></th>
         </tr>
 
       <% @transactions.each do |tr| %>
@@ -81,6 +86,7 @@
           <% else %>
             <th class="red"><%= (tr.product.exchanges.last.value.round(2) - tr.cost).round(2) %></th>
           <% end %>
+          <th><%= link_to "Sprzedaj produkt", transaction_path(tr), method: :delete, class: "btn-sm btn-primary" %></th>
         </tr>
       <% end %>
       </table>

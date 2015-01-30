@@ -29,6 +29,8 @@ class TransactionController < ApplicationController
   end
 
   def destroy
+  	current_user.profile.balance = current_user.profile.balance + (Product.find_by_id(@transaction.product_id).exchanges.last.value.round(2) * @transaction.quantity)
+  	current_user.profile.save
   	@transaction.destroy
 
   	redirect_to root_path
