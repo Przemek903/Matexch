@@ -1,2 +1,89 @@
-<% title("Home Page") %>
-<h1><i class="fa fa-home"></i> Home Page <small>views/pages/home.html.erb</small></h1>
+<div class="container">
+  <div class="row">
+    
+    <div class="col-md-3 products">
+    	<table>
+    		<tr>
+    			<th>Nazwa</th>
+    			<th>Kurs za uncje</th>
+    		</tr>
+    		
+    		<% @products.each do |prod| %>
+    			<tr>
+    				<th><%= link_to "#{prod.name}", prod, remote: true  %></th>
+    				<th><%= number_to_currency prod.exchanges.last.value.round(2) %></th>
+    			</tr>
+    		<% end %>
+    	</table>	
+    </div>
+    
+    <div class="col-md-9 graph">
+      <%= line_chart @exchange, min: @minusRange , max: @plusRange, library: {backgroundColor: "#2b2b2b", 
+      																		width: "850", title: "#{@products.first.name}"} %>
+    </div> <!-- end graph div -->
+  </div>
+  <div class="row">
+    <div class="col-md-3 makeTransaction">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h4><%= @products.first.name %></h4>
+            <p>Aktualny kurs: <%= @products.first.exchanges.last.value.round(2) %></p>   
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            
+            <%= form_for @transaction, :url => { :controller => "transaction", :action => "create" } do |f| %>
+              <div class="form-group">
+                <%= f.label :quantity, "Ilość:" %>
+                <div class="row">
+                  <div class="col-md-3">
+                    <%= f.number_field :quantity, :min => 0, :autofocus => true, :class => "form-control" %>
+                  </div>
+                    <%= f.hidden_field :user_id, :value => current_user.id %>
+                    <%= f.hidden_field :product_id, :value => @products.first.id %>
+                  <div class="col-md-3">
+                    <%= f.submit "Kup", :class => "btn btn-primary" %>
+                  </div>
+                </div> 
+              </div>
+            <% end %>
+          
+          </div>
+        </div>
+      
+      </div>
+    </div>
+
+  <!-- end MakeTransaction  -->
+
+    <div class="col-md-9 yourTransaction">
+    <h4>Twoje ostatnie zlecenia:</h4>
+      <table>
+        <tr>
+          <th>Nazwa produktu</th>
+          <th>Liczba uncji</th>
+          <th>Kurs zakupu</th>
+          <th>Kurs aktualny</th>
+          <th>Różnica</th>
+        </tr>
+
+      <% @transactions.each do |tr| %>
+        <tr>
+          <th><%= tr.product.name %></th>
+          <th><%= tr.quantity %></th>
+          <th><%= tr.cost %></th>
+          <th><%= tr.product.exchanges.last.value.round(2) %></th>
+          <% if (tr.product.exchanges.last.value.round(2) - tr.cost).round(2) > 0 %>
+            <th class="green"><%= (tr.product.exchanges.last.value.round(2) - tr.cost).round(2) %></th>
+          <% else %>
+            <th class="red"><%= (tr.product.exchanges.last.value.round(2) - tr.cost).round(2) %></th>
+          <% end %>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+  </div>
+</div>

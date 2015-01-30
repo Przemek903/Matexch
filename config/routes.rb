@@ -4,15 +4,16 @@ Matexch::Application.routes.draw do
   get "inside", to: "pages#inside", as: "inside"
   
       
-  devise_for :users
+  devise_for :users 
   
   namespace :admin do
     root "base#index"
-    resources :users
-    
+    resources :users   
   end
 
+  resources :transaction, only: [:new, :create, :show, :destroy, :index]
   resources :profile, except: [:destroy, :index] 
+  resources :product, only: [:show]
   
   
 end

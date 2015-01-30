@@ -13,6 +13,9 @@ gem 'bcrypt', '3.1.9'
 gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'whenever', :require => false
+gem 'chartkick'
+gem 'groupdate'
+gem 'active_median'
 
 # Necessary for Windows OS (won't install on *nix systems)
 gem 'tzinfo-data', platforms: [:mingw, :mswin]

@@ -2,7 +2,7 @@
 #
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
-
+set :environment, "development"
 # Example:
 #
 set :output, "#{path}/log/cron.log"
@@ -19,6 +19,6 @@ set :output, "#{path}/log/cron.log"
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.minute do
-	command "echo 'you can use raw cron syntax too'"
+every 5.minutes do
+	runner "Exchange.create_exchange"
 end

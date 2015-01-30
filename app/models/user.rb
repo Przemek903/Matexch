@@ -4,6 +4,10 @@ class User < ActiveRecord::Base
   friendly_id :friendify, use: :slugged
 
   has_one :profile
+
+  has_many :products, through: :transactions
+  has_many :transactions
+
   
   # necessary to override friendly_id reserved words
   def friendify
